@@ -36,3 +36,25 @@ func TestAddString(t *testing.T) {
 		t.Errorf("The AddString function did not add the correct ending character \"$\" to the data structure.")
 	}
 }
+
+func TestDoesContain(t *testing.T) {
+	tr := NewTrie()
+	ss := "tyler"
+
+	tr.AddString(ss)
+
+	expected := true
+	actual := tr.DoesContain(ss)
+
+	if actual != expected {
+		t.Errorf("DoesContain should return true for strings contained in the trie.  String:", ss)
+	}
+
+	ss = "tyl"
+	expected = false
+	actual = tr.DoesContain(ss)
+
+	if actual != expected {
+		t.Errorf("DoesContain should return false for strings not contained in the trie.  String:", ss)
+	}
+}
