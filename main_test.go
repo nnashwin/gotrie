@@ -15,6 +15,7 @@ func TestNewTrie(t *testing.T) {
 }
 
 func TestAddString(t *testing.T) {
+	// It adds strings correctly to the data structure
 	tr := NewTrie()
 	ss := "tyler"
 
@@ -28,5 +29,10 @@ func TestAddString(t *testing.T) {
 			t.Errorf("The AddString function did not write the correct string to the trie. The Children map should contains %s and did not", strCh)
 		}
 		node = (node.Children[strCh])
+	}
+
+	// Correctly adds a "$" to signal the ending of a word
+	if _, ok := node.Children["$"]; ok == false {
+		t.Errorf("The AddString function did not add the correct ending character \"$\" to the data structure.")
 	}
 }

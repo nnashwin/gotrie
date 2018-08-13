@@ -37,6 +37,9 @@ func (t *Trie) AddString(s string) (err error) {
 		currentNode = *currentNode.Children[ch]
 	}
 
+	// Adds a dollar sign to indicate the string is over
+	currentNode.Children["$"] = &TrieNode{Char: "$", Children: make(map[string]*TrieNode)}
+
 	return nil
 }
 
