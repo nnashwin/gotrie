@@ -22,17 +22,6 @@ func NewTrie() *Trie {
 	return &t
 }
 
-func (tn *TrieNode) insertChar(s string) (err error) {
-	if tn.Char != "" {
-		err = errors.New("The TrieNode already has a character, can not be inserted twice!")
-		return
-	}
-
-	tn.Char = s
-
-	return
-}
-
 func (t *Trie) AddString(s string) (err error) {
 	if t.Root == nil {
 		err = errors.New("The Trie was not initialized with the proper params, please either use the NewTrie method or initialize the trie with a correct Root and trie again")
