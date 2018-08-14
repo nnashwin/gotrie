@@ -47,7 +47,7 @@ func TestDoesContain(t *testing.T) {
 	actual := tr.DoesContain(ss)
 
 	if actual != expected {
-		t.Errorf("DoesContain should return true for strings contained in the trie.  String:", ss)
+		t.Errorf("DoesContain should return true for strings contained in the trie.  String: %s", ss)
 	}
 
 	ss = "tyl"
@@ -55,6 +55,6 @@ func TestDoesContain(t *testing.T) {
 	actual = tr.DoesContain(ss)
 
 	if actual != expected {
-		t.Errorf("DoesContain should return false for strings not contained in the trie.  String:", ss)
+		t.Errorf("DoesContain should return false for strings not contained in the trie.  String: %s", ss)
 	}
 }

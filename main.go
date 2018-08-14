@@ -43,6 +43,27 @@ func (t *Trie) AddString(s string) (err error) {
 	return nil
 }
 
+func (t *Trie) DoesContain(s string) (isContained bool) {
+	isContained = true
+	if t.Root == nil {
+		return
+	}
+
+	currentNode := *t.Root
+	s += "$"
+	ss := strings.Split(s, "")
+	for _, ch := range ss {
+		if _, ok := currentNode.Children[ch]; ok == false {
+			isContained = false
+			return
+		}
+
+		currentNode = *currentNode.Children[ch]
+	}
+
+	return
+}
+
 func main() {
 	fmt.Println("vim-go")
 	t := Trie{}
