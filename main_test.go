@@ -40,16 +40,21 @@ func TestAddString(t *testing.T) {
 func TestDoesContain(t *testing.T) {
 	tr := NewTrie()
 	ss := "tyler"
+	// "tyler" should not be contained in the trie when nothing has been added (trie.Root == nil)
+	expected := false
+	actual := tr.DoesContain(ss)
 
 	tr.AddString(ss)
 
-	expected := true
-	actual := tr.DoesContain(ss)
+	// after adding it to the trie, "tyler" should be contained in the trie
+	expected = true
+	actual = tr.DoesContain(ss)
 
 	if actual != expected {
 		t.Errorf("DoesContain should return true for strings contained in the trie.  String: %s", ss)
 	}
 
+	// tyl, which has not been added to the trie, should not be contained
 	ss = "tyl"
 	expected = false
 	actual = tr.DoesContain(ss)
