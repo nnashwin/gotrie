@@ -25,6 +25,7 @@ func NewTrie() *Trie {
 func (t *Trie) AddString(s string) (err error) {
 	if t.Root == nil {
 		err = errors.New("The Trie was not initialized with the proper params, please either use the NewTrie method or initialize the trie with a correct Root and trie again")
+		return
 	}
 
 	currentNode := *t.Root
@@ -64,9 +65,42 @@ func (t *Trie) DoesContain(s string) (isContained bool) {
 	return
 }
 
+func (t *Trie) GetStartsWith(startWith string) (strings []string) {
+	currentNode := *t.Root
+	for _, ch := range startWith {
+		str := string(ch)
+		if _, ok := currentNode.Children[str]; ok == true {
+			currentNode = *currentNode.Children[str]
+		} else {
+			return nil
+		}
+	}
+
+	for key, _ := range currentNode.Children {
+		FindWords(*currentNode.Children[key], startWith, &strings)
+	}
+
+	return
+}
+
+func FindWords(node TrieNode, conStr string, retStr *[]string) {
+	if node.Char == "$" {
+		*retStr = append(*retStr, conStr)
+	}
+
+	if len(node.Children) != 0 {
+		for key, _ := range node.Children {
+			FindWords(*node.Children[key], conStr+node.Char, retStr)
+		}
+	}
+}
+
 func main() {
-	fmt.Println("vim-go")
-	t := Trie{}
-	fmt.Println(t.Root == nil)
-	fmt.Println(&t == nil)
+	t := NewTrie()
+	t.AddString("cookies")
+	t.AddString("coconuts")
+	t.AddString("collate")
+	t.AddString("coconut")
+	t.AddString("chocolate")
+	fmt.Println(t.GetStartsWith("ch"))
 }
