@@ -2,6 +2,7 @@ package main
 
 import (
 	"reflect"
+	"sort"
 	"testing"
 )
 
@@ -61,5 +62,22 @@ func TestDoesContain(t *testing.T) {
 
 	if actual != expected {
 		t.Errorf("DoesContain should return false for strings not contained in the trie.  String: %s", ss)
+	}
+}
+
+func TestGetStartsWith(t *testing.T) {
+	tr := NewTrie()
+	tr.AddString("cookies")
+	tr.AddString("coconuts")
+	tr.AddString("collate")
+	tr.AddString("coconut")
+	tr.AddString("chocolate")
+	expected := []string{"coconut", "coconuts", "cookies", "collate"}
+	actual := tr.GetStartsWith("co")
+	sort.Strings(actual)
+	sort.Strings(expected)
+
+	if reflect.DeepEqual(expected, actual) == false {
+		t.Errorf("The GetStartsWith method did not return all strings that start with the prefix.  Expected: %q\nActual: %q\n", expected, actual)
 	}
 }
