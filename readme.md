@@ -1,15 +1,15 @@
-# go-trie
-[![Build Status](https://travis-ci.org/ru-lai/go-trie.svg?branch=master)](https://travis-ci.org/ru-lai/go-trie)
+# gotrie
+[![Build Status](https://travis-ci.org/ru-lai/gotrie.svg?branch=master)](https://travis-ci.org/ru-lai/gotrie)
 
 ## Install
 ```
-$ go get github.com/ru-lai/go-trie
+$ go get github.com/ru-lai/gotrie
 ```
 
 ## Usage
 ```
 import (
-	trie "github.com/ru-lai/go-trie"
+	trie "github.com/ru-lai/gotrie"
 )
 
 tr := trie.NewTrie()
