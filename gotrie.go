@@ -76,20 +76,20 @@ func (t *Trie) GetStartsWith(startWith string) (strings []string) {
 	}
 
 	for key, _ := range currentNode.Children {
-		FindWords(*currentNode.Children[key], startWith, &strings)
+		findWords(*currentNode.Children[key], startWith, &strings)
 	}
 
 	return
 }
 
-func FindWords(node TrieNode, conStr string, retStr *[]string) {
+func findWords(node TrieNode, conStr string, retStr *[]string) {
 	if node.Char == "$" {
 		*retStr = append(*retStr, conStr)
 	}
 
 	if len(node.Children) != 0 {
 		for key, _ := range node.Children {
-			FindWords(*node.Children[key], conStr+node.Char, retStr)
+			findWords(*node.Children[key], conStr+node.Char, retStr)
 		}
 	}
 }
