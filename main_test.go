@@ -72,7 +72,8 @@ func TestGetStartsWith(t *testing.T) {
 	tr.AddString("collate")
 	tr.AddString("coconut")
 	tr.AddString("chocolate")
-	expected := []string{"coconut", "coconuts", "cookies", "collate"}
+	tr.AddString("conan")
+	expected := []string{"coconut", "conan", "coconuts", "cookies", "collate"}
 	actual := tr.GetStartsWith("co")
 	sort.Strings(actual)
 	sort.Strings(expected)
