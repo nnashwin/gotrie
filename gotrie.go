@@ -1,8 +1,7 @@
-package main
+package gotrie
 
 import (
 	"errors"
-	"fmt"
 	"strings"
 )
 
@@ -93,14 +92,4 @@ func FindWords(node TrieNode, conStr string, retStr *[]string) {
 			FindWords(*node.Children[key], conStr+node.Char, retStr)
 		}
 	}
-}
-
-func main() {
-	t := NewTrie()
-	t.AddString("cookies")
-	t.AddString("coconuts")
-	t.AddString("collate")
-	t.AddString("coconut")
-	t.AddString("chocolate")
-	fmt.Println(t.GetStartsWith("ch"))
 }
