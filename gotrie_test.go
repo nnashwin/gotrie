@@ -81,4 +81,13 @@ func TestGetStartsWith(t *testing.T) {
 	if reflect.DeepEqual(expected, actual) == false {
 		t.Errorf("The GetStartsWith method did not return all strings that start with the prefix.  Expected: %q\nActual: %q\n", expected, actual)
 	}
+
+	expected = []string{"coconut", "coconuts"}
+	actual = tr.GetStartsWith("coco")
+
+	sort.Strings(actual)
+
+	if reflect.DeepEqual(expected, actual) == false {
+		t.Errorf("The GetStartsWith method did not return all strings that start with the prefix.  Expected: %q\nActual: %q\n", expected, actual)
+	}
 }
